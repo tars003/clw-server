@@ -42,6 +42,23 @@ app.post('/serial-data', async (req, res) => {
     }
 });
 
+app.get('/get-data', async (req, res) => {
+    try {
+        console.log('Serial Reponse : ', data);
+        const srObj = await SerialResponse.findById('ABC');
+        return res.status(200).json({
+            success: true,
+            data: srObj
+        });
+    } catch (err) {
+        console.log('error !', err);
+        return res.status(503).json({
+            success: false,
+            error: err
+        })
+    }
+});
+
 server.listen(process.env.PORT || 3000, () => {
     let port = process.env.PORT || 3000;
     console.log(`listening on localhost:${port}`);
