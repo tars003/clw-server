@@ -44,7 +44,6 @@ app.post('/serial-data', async (req, res) => {
 
 app.get('/get-data', async (req, res) => {
     try {
-        console.log('Serial Reponse : ', data);
         const srObj = await SerialResponse.findById('ABC');
         return res.status(200).json({
             success: true,
