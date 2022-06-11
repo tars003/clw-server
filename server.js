@@ -23,7 +23,9 @@ app.post('/serial-data', async (req, res) => {
     try {
         let data = req.body.data;
         console.log('Serial Reponse : ', data);
-        const serialRes = await SerialResponse.create({
+        const srObj = await SerialResponse.findById('ABC');
+        if(srObj) await SerialResponse.create({_id: 'ABC'});
+        const serialRes = await SerialResponse.findByIdAndUpdate('ABC', {
             data: data,
             time: moment().format('DD MM YYYY HH:mm:ss')
         });
