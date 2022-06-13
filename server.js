@@ -21,15 +21,20 @@ app.get('/', (req, res) => {
 
 app.post('/serial-data', async (req, res) => {
     try {
-        let data = req.body.data;
-        console.log('Serial Reponse : ', data);
-        const srObj = await SerialResponse.findById('ABC');
-        if(!srObj) await SerialResponse.create({_id: 'ABC'});
-        const serialRes = await SerialResponse.findByIdAndUpdate('ABC', {
-            data: data,
-            time: moment().format('DD MM YYYY HH:mm:ss')
-        });
+        let { data, espId, latitude, longitude, speed, altitude } = req.body;
         
+        console.log('Serial Reponse : ', req.body);
+        const srObj = await SerialResponse.findById(espId);
+        if(!srObj) await SerialResponse.create({_id: espId});
+        const serialRes = await SerialResponse.findByIdAndUpdate(espId, {
+            data: data,
+            time: moment().format('DD MM YYYY HH:mm:ss'),
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+            speed: speed.toString(),
+            altitude: altitude.toString()
+        });
+    
         return res.status(200).json({
             success: true
         });
