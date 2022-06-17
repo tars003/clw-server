@@ -22,6 +22,11 @@ app.get('/', (req, res) => {
 app.post('/serial-data', async (req, res) => {
     try {
         let { data, espId, latitude, longitude, speed, altitude } = req.body;
+
+        if(latitude) latitude = latitude.toString;
+        if(longitude) longitude = longitude.toString;
+        if(speed) speed = speed.toString;
+        if(altitude) altitude = altitude.toString;
         
         console.log('Serial Reponse : ', req.body);
         const srObj = await SerialResponse.findById(espId);
@@ -29,10 +34,10 @@ app.post('/serial-data', async (req, res) => {
         const serialRes = await SerialResponse.findByIdAndUpdate(espId, {
             data: data,
             time: moment().format('DD MM YYYY HH:mm:ss'),
-            latitude: latitude.toString(),
-            longitude: longitude.toString(),
-            speed: speed.toString(),
-            altitude: altitude.toString()
+            latitude: latitude,
+            longitude: longitude,
+            speed: speed,
+            altitude: altitude
         });
     
         return res.status(200).json({
