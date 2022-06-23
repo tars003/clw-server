@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const moment = require('moment');
+const path = require('path');
 
 const connectDB = require('./utils/db');
 
@@ -11,6 +12,7 @@ const SerialResponse = require('./models/SerialResponse.model');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname + '/public'));
 require('dotenv').config()
 
 connectDB();
@@ -23,14 +25,14 @@ app.post('/serial-data', async (req, res) => {
     try {
         let { data, espId, latitude, longitude, speed, altitude } = req.body;
 
-        if(latitude) latitude = latitude.toString;
-        if(longitude) longitude = longitude.toString;
-        if(speed) speed = speed.toString;
-        if(altitude) altitude = altitude.toString;
-        
+        if (latitude) latitude = latitude.toString;
+        if (longitude) longitude = longitude.toString;
+        if (speed) speed = speed.toString;
+        if (altitude) altitude = altitude.toString;
+
         console.log('Serial Reponse : ', req.body);
         const srObj = await SerialResponse.findById(espId);
-        if(!srObj) await SerialResponse.create({_id: espId});
+        if (!srObj) await SerialResponse.create({ _id: espId });
         const serialRes = await SerialResponse.findByIdAndUpdate(espId, {
             data: data,
             time: moment().format('DD MM YYYY HH:mm:ss'),
@@ -39,7 +41,7 @@ app.post('/serial-data', async (req, res) => {
             speed: speed,
             altitude: altitude
         });
-    
+
         return res.status(200).json({
             success: true
         });
@@ -66,6 +68,10 @@ app.get('/get-data', async (req, res) => {
             error: err
         })
     }
+});
+
+app.get('/dashboard', function (req, res) {
+    res.sendFile(path.join(__dirname, '/templates/index.html'));
 });
 
 server.listen(process.env.PORT || 3000, () => {
