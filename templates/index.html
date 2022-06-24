@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="main.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.ico" />
 </head>
 
 <body>
@@ -35,34 +36,38 @@
                     <div id="manual-btn" class="row nav-item">
                         <p class="not-selectable" style="font-weight: bold;">MANUAL</p>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- NAV col div -->
-            <div class="col-11">
+            <div class="col-11" style="margin-left: 70px; ">
 
                 <!-- Select port -->
                 <div class="container" style="margin-top: 10px; padding-left: 23px;">
                     <form id="port-form">
                         <div class="row">
-                            <div class="col-2">
-                                <input id="port-submit" class="btn btn-primary" type="submit" value="Connect">
-                                <button id="port-disconnect" class="btn btn-primary">Disconnect</button>
-                            </div>
-                            <div class="col-2"> 
+                            <div class="col-4">
+                                <img src="logo.jpg" alt="" srcset="">
                                 <button id="export-btn" class="btn btn-primary"> Export data</button>
                             </div>
-                            <div class="col-2"> 
+                            <div class="col-2" style="margin-top: 26px;">
+                                <input id="port-submit" class="btn btn-primary" type="submit" value="Connect">
+                                <button id="port-disconnect" class="btn btn-primary">Disconnect</button>
+
                             </div>
-                            <div class="col-6"> 
+                            <div class="col-6">
                                 <div class="container" style="margin-left: -5px;">
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td >Date</td>
-                                                <td id="time-header" style="background-color: #1f68bb; color: white;    text-align: center;"></td>
-                                                <td >Time</td>
-                                                <td id="date-header" style="background-color: #1f68bb; color: white;    text-align: center;"></td>
+                                                <td>Date</td>
+                                                <td id="time-header"
+                                                    style="background-color: #1f68bb; color: white;    text-align: center;">
+                                                </td>
+                                                <td>Time</td>
+                                                <td id="date-header"
+                                                    style="background-color: #1f68bb; color: white;    text-align: center;">
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -78,7 +83,7 @@
                     <div class="row">
                         <div class="col-6">
                             <!-- output table -->
-                            <div class="container" id="output-table" style="margin-top: 2px;">
+                            <div class="container" id="output-table" style="margin-top: 25px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -289,7 +294,7 @@
                         </div>
                         <div class="col-6">
                             <!-- input table -->
-                            <div class="container" id="input-table" style="margin-top: 2px;">
+                            <div class="container" id="input-table" style="margin-top: -35px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -386,8 +391,63 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
+                            <!-- pressure value table -->
+                            <div class="container" id="pressure-table" style="margin-top: 2px;">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 75px;">Fault1</td>
+                                            <td id="fault1"
+                                                style="background-color: #c94f55; color: white;text-align: center; width: 125px;">
+                                            </td>
+                                            <td style="width: 75px;">Fault2</td>
+                                            <td id="fault2"
+                                                style="background-color: #c94f55; color: white;text-align: center;width: 160px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- ACTUAL PRESSURE TABLE -->
+                                <table class="table" hidden>
+                                    <thead>
+                                        <tr>
+                                            <th>Pressure Transducer <strong>Bar</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="color: black;">HP 1/1</td>
+                                            <td id="hp11-value" style="background-color: #1f68bb; color: white;"></td>
+                                            <td style="color: black;">HP 2/1</td>
+                                            <td id="hp21-value" style="background-color: #1f68bb; color: white;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black;">HP 1/2</td>
+                                            <td id="hp12-value" style="background-color: #1f68bb; color: white;"></td>
+                                            <td style="color: black;">HP 2/2</td>
+                                            <td id="hp22-value" style="background-color: #1f68bb; color: white;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black;">LP 1/1</td>
+                                            <td id="lp11-value" style="background-color: #1f68bb; color: white;"></td>
+                                            <td style="color: black;">LP 2/1</td>
+                                            <td id="lp21-value" style="background-color: #1f68bb; color: white;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: black;">LP 2/1</td>
+                                            <td id="lp12-value" style="background-color: #1f68bb; color: white;"></td>
+                                            <td style="color: black;">LP 2/2</td>
+                                            <td id="lp22-value" style="background-color: #1f68bb; color: white;"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- ACTUAL PRESSURE TABLE -->
+                            </div>
+                            <!-- pressure value table -->
+                        </div>
+                        <div class="col-6"> 
                             <!-- temp value table -->
-                            <div class="container" id="temperature-table" style="margin-top: 2px;">
+                            <div class="container" id="temperature-table" style="margin-top: -90px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -424,56 +484,8 @@
                             </div>
                             <!-- temp value table -->
                         </div>
-                        <div class="col-6">
-                            <!-- pressure value table -->
-                            <div class="container" id="pressure-table" style="margin-top: 2px;">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td style="width: 75px;">Fault1</td>
-                                            <td id="fault1" style="background-color: #c94f55; color: white;text-align: center; width: 125px;"></td>
-                                            <td style="width: 75px;">Fault2</td>
-                                            <td id="fault2" style="background-color: #c94f55; color: white;text-align: center;width: 160px;"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table" hidden>
-                                    <thead>
-                                        <tr>
-                                            <th>Pressure Transducer <strong>Bar</strong></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="color: black;">HP 1/1</td>
-                                            <td id="hp11-value" style="background-color: #1f68bb; color: white;"></td>
-                                            <td style="color: black;">HP 2/1</td>
-                                            <td id="hp21-value" style="background-color: #1f68bb; color: white;"></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color: black;">HP 1/2</td>
-                                            <td id="hp12-value" style="background-color: #1f68bb; color: white;"></td>
-                                            <td style="color: black;">HP 2/2</td>
-                                            <td id="hp22-value" style="background-color: #1f68bb; color: white;"></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color: black;">LP 1/1</td>
-                                            <td id="lp11-value" style="background-color: #1f68bb; color: white;"></td>
-                                            <td style="color: black;">LP 2/1</td>
-                                            <td id="lp21-value" style="background-color: #1f68bb; color: white;"></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color: black;">LP 2/1</td>
-                                            <td id="lp12-value" style="background-color: #1f68bb; color: white;"></td>
-                                            <td style="color: black;">LP 2/2</td>
-                                            <td id="lp22-value" style="background-color: #1f68bb; color: white;"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
-                    <!-- pressure value table -->
+                    
                 </div>
                 <!-- BODY DIV -->
 
