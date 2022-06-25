@@ -23,23 +23,16 @@ app.get('/', (req, res) => {
 
 app.post('/serial-data', async (req, res) => {
     try {
-        let { data, espId, latitude, longitude, speed, altitude } = req.body;
-
-        if (latitude) latitude = latitude.toString;
-        if (longitude) longitude = longitude.toString;
-        if (speed) speed = speed.toString;
-        if (altitude) altitude = altitude.toString;
+        let { data, espId, location} = req.body;
+        
 
         console.log('Serial Reponse : ', req.body);
         const srObj = await SerialResponse.findById(espId);
         if (!srObj) await SerialResponse.create({ _id: espId });
         const serialRes = await SerialResponse.findByIdAndUpdate(espId, {
             data: data,
-            time: moment().format('DD MM YYYY HH:mm:ss'),
-            latitude: latitude,
-            longitude: longitude,
-            speed: speed,
-            altitude: altitude
+            location: location || srObj?.location,
+            time: moment().utcOffset("+05:30").format('DD MM YYYY HH:mm:ss')
         });
 
         return res.status(200).json({
