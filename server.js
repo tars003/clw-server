@@ -101,7 +101,7 @@ app.get('/get-location/:espId', async (req, res) => {
             };
             let coordinates = await axios(config);
             let result = coordinates.data;
-            console.log('result -----------------', result);
+            // console.log('result -----------------', result);
             resultArr.push(result);
         }
 
