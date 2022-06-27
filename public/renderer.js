@@ -46,6 +46,9 @@ let dataLogTable;
 let dataInterval;
 
 let mapFrame;
+let mapBtn;
+let locationIndex = 0;
+let locationObj = {} ;
 
 // NAV BTNS & CONNECT BTN LOADING & LISTENING
 const loadInitialElements = async () => {
@@ -308,16 +311,28 @@ const startConnection = () => {
 const startListening = () => {
 
   mapFrame = document.getElementById('map-frame');
+  mapBtn = document.getElementById('map-btn');
 
+  mapBtn.addEventListener('click', e => {
+    e.preventDefault();
+    if(locationIndex >= locationObj.length-1) locationIndex = 0;
+    else locationIndex += 1;
+
+    console.log('location index = ', locationIndex);
+    changeLocationOnMap(locationObj);
+  })
+
+  // FETCHING COORDINATES FROM SERVER
   fetch('https://nxp-server.herokuapp.com/get-location/1')
     .then(response => response.json())
     .then(data => {
-      console.log(data['location'][1]['location']['lat']);
+      locationObj = data['location'];
+      console.log('location data', data);
 
-      mapFrame.src = `//maps.google.com/maps?q=${data['location'][1]['location']['lat']},${data['location'][1]['location']['lng']}&z=15&output=embed`
+      changeLocationOnMap(locationObj);
     });
 
-
+  // FETCHING DATA FROM SERIAL AT REGULAR INTERVALS
   dataInterval = setInterval(() => {
     fetch('https://nxp-server.herokuapp.com/get-data')
       .then(response => response.json())
@@ -1141,6 +1156,15 @@ const addRow = (data) => {
 
 
 loadInitialElements();
+
+const changeLocationOnMap = (locationObj) => {
+
+  let lat = locationObj[locationIndex]['location']['lat'];
+  let long = locationObj[locationIndex]['location']['lng'];
+
+  mapFrame = document.getElementById('map-frame');
+  mapFrame.src = `//maps.google.com/maps?q=${lat},${long}&z=15&output=embed` 
+}
 
 
 
