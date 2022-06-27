@@ -45,6 +45,8 @@ let dataLogTable;
 
 let dataInterval;
 
+let mapFrame;
+
 // NAV BTNS & CONNECT BTN LOADING & LISTENING
 const loadInitialElements = async () => {
   // ADD EVENT LISTNER ON SUBMIT AND CONNECT TO SELECTED PORT
@@ -304,6 +306,18 @@ const startConnection = () => {
 
 }
 const startListening = () => {
+
+  mapFrame = document.getElementById('map-frame');
+
+  fetch('https://nxp-server.herokuapp.com/get-location/1')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data['location'][1]['location']['lat']);
+
+      mapFrame.src = `//maps.google.com/maps?q=${data['location'][1]['location']['lat']},${data['location'][1]['location']['lng']}&z=15&output=embed`
+    });
+
+
   dataInterval = setInterval(() => {
     fetch('https://nxp-server.herokuapp.com/get-data')
       .then(response => response.json())
