@@ -1,5 +1,6 @@
-// let rootUrl = "https://nxp-server.herokuapp.com";
-let rootUrl = "http://localhost:5000";
+// import {rootUrl} from './config.js';
+let rootUrl = "https://nxp-server.herokuapp.com";
+// const rootUrl = "http://localhost:5000";
 
 var unitSearch = document.getElementById('unit-search');
 var searchBtn = document.getElementById('search-btn');

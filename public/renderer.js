@@ -2,8 +2,9 @@
 // import * as tableToCsv from 'node-table-to-csv';
 // const fs = require('fs');
 
-// let rootUrl = "https://nxp-server.herokuapp.com";
-let rootUrl = "http://localhost:5000";
+// import {rootUrl} from './config.js';
+let rootUrl = "https://nxp-server.herokuapp.com";
+// const rootUrl = "http://localhost:5000";
 
 let isConnected = false;
 let myPort;
