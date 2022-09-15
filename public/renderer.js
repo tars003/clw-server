@@ -2,6 +2,9 @@
 // import * as tableToCsv from 'node-table-to-csv';
 // const fs = require('fs');
 
+// let rootUrl = "https://nxp-server.herokuapp.com";
+let rootUrl = "http://localhost:5000";
+
 let isConnected = false;
 let myPort;
 
@@ -322,8 +325,13 @@ const startListening = () => {
     changeLocationOnMap(locationObj);
   })
 
+  // GET CURRENT URL
+  let currUrl = window.location.href;
+  let unitId = currUrl.slice(currUrl.indexOf('id')+3, currUrl.length);
+  console.log(`current url : ${window.location.href}, unit : ${unitId}`);
+
   // FETCHING COORDINATES FROM SERVER
-  fetch('https://nxp-server.herokuapp.com/get-location/1')
+  fetch(`${rootUrl}/get-location/${unitId}`)
     .then(response => response.json())
     .then(data => {
       locationObj = data['location'];
@@ -334,7 +342,7 @@ const startListening = () => {
 
   // FETCHING DATA FROM SERIAL AT REGULAR INTERVALS
   dataInterval = setInterval(() => {
-    fetch('https://nxp-server.herokuapp.com/get-data')
+    fetch(`${rootUrl}/get-data/${unitId}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -1165,6 +1173,28 @@ const changeLocationOnMap = (locationObj) => {
   mapFrame = document.getElementById('map-frame');
   mapFrame.src = `//maps.google.com/maps?q=${lat},${long}&z=15&output=embed` 
 }
+
+
+var unitSearch = document.getElementById('unit-search');
+var searchBtn = document.getElementById('search-btn');
+
+searchBtn.addEventListener('click', e => {
+    e.preventDefault();
+    let id = unitSearch.value;
+    unitSearch.value = "";
+    // console.log(`Inside search listener : ${unitSearch.value}`);
+    window.location.replace(`http://localhost:5000/dashboard/?id=${id}`);
+});
+
+unitSearch.addEventListener('keyup', e => {
+  e.preventDefault();
+  if(e.key == "Enter") {
+      let id = unitSearch.value;
+      unitSearch.value = "";
+      // console.log(`Inside search listener : ${unitSearch.value}`);
+      window.location.replace(`http://localhost:5000/dashboard/?id=${id}`);
+  }
+});
 
 
 

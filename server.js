@@ -57,9 +57,9 @@ app.post('/serial-data', async (req, res) => {
     }
 });
 
-app.get('/get-data', async (req, res) => {
+app.get('/get-data/:espId', async (req, res) => {
     try {
-        const srObj = await SerialResponse.findById('1');
+        const srObj = await SerialResponse.findById(req.params.espId);
         return res.status(200).json({
             success: true,
             data: srObj
@@ -120,9 +120,31 @@ app.get('/get-location/:espId', async (req, res) => {
 
 });
 
+app.get('/get-units', async (req, res) => {
+    try {
+        const srObj = await SerialResponse.find();
+        return res.status(200).json({
+            success: true,
+            count: srObj.length,
+            data: srObj
+        });
+    } catch (err) {
+        console.log('error !', err);
+        return res.status(503).json({
+            success: false,
+            error: err
+        })
+    }
+});
+
+
 
 app.get('/dashboard', function (req, res) {
     res.sendFile(path.join(__dirname, '/templates/index.html'));
+});
+
+app.get('/all-units', function (req, res) {
+    res.sendFile(path.join(__dirname, '/templates/allUnits.html'));
 });
 
 server.listen(process.env.PORT || 3000, () => {
