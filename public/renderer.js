@@ -1184,7 +1184,7 @@ searchBtn.addEventListener('click', e => {
     let id = unitSearch.value;
     unitSearch.value = "";
     // console.log(`Inside search listener : ${unitSearch.value}`);
-    window.location.replace(`http://localhost:5000/dashboard/?id=${id}`);
+    window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
 });
 
 unitSearch.addEventListener('keyup', e => {
@@ -1193,7 +1193,7 @@ unitSearch.addEventListener('keyup', e => {
       let id = unitSearch.value;
       unitSearch.value = "";
       // console.log(`Inside search listener : ${unitSearch.value}`);
-      window.location.replace(`http://localhost:5000/dashboard/?id=${id}`);
+      window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
   }
 });
 
