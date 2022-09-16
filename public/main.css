@@ -232,3 +232,7 @@ margin-left: 200px; /* Same as the width of the sidenav */
     margin: 10px;
     width: 30%;
 }
+
+.card-body {
+    background-color: #cfe7ef;
+}
