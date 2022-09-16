@@ -1,9 +1,16 @@
 // import {rootUrl} from './config.js';
-let rootUrl = "https://nxp-server.herokuapp.com";
-// const rootUrl = "http://localhost:5000";
+// let rootUrl = "https://nxp-server.herokuapp.com";
+const rootUrl = "http://localhost:5000";
 
 var unitSearch = document.getElementById('unit-search');
 var searchBtn = document.getElementById('search-btn');
+var searchTab = document.getElementById('search-tab');
+
+// searchTab.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log('inside search tab');
+//     unitSearch.focus();
+// })
 
 searchBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -11,6 +18,7 @@ searchBtn.addEventListener('click', e => {
     unitSearch.value = "";
     // console.log(`Inside search listener : ${unitSearch.value}`);
     window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+    // unitSearch.focus();
 });
 
 unitSearch.addEventListener('keyup', e => {
@@ -47,13 +55,13 @@ const insertCards = (body) => {
         let newCard = "";
         newCard += `<div class="card unit-card" ><div class="card-body"><h5 class="card-title">`;
         newCard += `${data[i]['serialNo']}`;
-        newCard += `</h5><p class="card-text">Unit Id :`;
+        newCard += `</h5><hr class="bg-danger border-2 border-top border-danger"><p class="card-text">Unit Id :`;
         newCard += ` ${data[i]['_id']} `;
         newCard += ` <br> Mfg Date : `;
         newCard += `${data[i]['mfgDate']}`;
         newCard += `<br> Time : `;
         newCard += `${data[i]['time']}`;
-        newCard += `</p><a href="/dashboard/?id=${data[i]['_id']}" class="btn btn-primary">Details</a></div></div>`
+        newCard += `</p><a href="/dashboard/?id=${data[i]['_id']}" class="btn btn-primary"> MORE DETAILS</a></div></div>`
         console.log('new card', newCard);
 
         cardDiv.innerHTML += newCard;

@@ -3,8 +3,8 @@
 // const fs = require('fs');
 
 // import {rootUrl} from './config.js';
-let rootUrl = "https://nxp-server.herokuapp.com";
-// const rootUrl = "http://localhost:5000";
+// let rootUrl = "https://nxp-server.herokuapp.com";
+const rootUrl = "http://localhost:5000";
 
 let isConnected = false;
 let myPort;

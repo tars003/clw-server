@@ -235,4 +235,10 @@ margin-left: 200px; /* Same as the width of the sidenav */
 
 .card-body {
     background-color: #cfe7ef;
+    /* border-style: solid;
+    border-width: thin; */
+}
+
+.card-body > a {
+    background-color: #223591;
 }
