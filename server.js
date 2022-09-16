@@ -147,6 +147,10 @@ app.get('/all-units', function (req, res) {
     res.sendFile(path.join(__dirname, '/templates/allUnits.html'));
 });
 
+app.get('/track', function (req, res) {
+    res.sendFile(path.join(__dirname, '/templates/track.html'));
+});
+
 server.listen(process.env.PORT || 3000, () => {
     let port = process.env.PORT || 3000;
     console.log(`listening on localhost:${port}`);
