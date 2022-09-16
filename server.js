@@ -151,6 +151,10 @@ app.get('/track', function (req, res) {
     res.sendFile(path.join(__dirname, '/templates/track.html'));
 });
 
+app.get('/faults', function (req, res) {
+    res.sendFile(path.join(__dirname, '/templates/faults.html'));
+});
+
 server.listen(process.env.PORT || 3000, () => {
     let port = process.env.PORT || 3000;
     console.log(`listening on localhost:${port}`);
