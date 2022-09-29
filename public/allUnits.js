@@ -1,7 +1,3 @@
-// import {rootUrl} from './config.js';
-let rootUrl = "https://nxp-server.herokuapp.com";
-// const rootUrl = "http://localhost:5000";
-
 var unitSearch = document.getElementById('unit-search');
 var searchBtn = document.getElementById('search-btn');
 var searchTab = document.getElementById('search-tab');
@@ -17,7 +13,7 @@ searchBtn.addEventListener('click', e => {
     let id = unitSearch.value;
     unitSearch.value = "";
     // console.log(`Inside search listener : ${unitSearch.value}`);
-    window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+    window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
     // unitSearch.focus();
 });
 
@@ -27,7 +23,7 @@ unitSearch.addEventListener('keyup', e => {
         let id = unitSearch.value;
         unitSearch.value = "";
         // console.log(`Inside search listener : ${unitSearch.value}`);
-        window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+        window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
     }
 });
 
@@ -37,7 +33,7 @@ window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
     
     // FETCHING ALL UNITS FROM SERVER
-    fetch(`${rootUrl}/get-units`)
+    fetch(`${process.env.ROOT_URL}/get-units`)
         .then(response => response.json())
         .then(data => {
             // locationObj = data['location'];

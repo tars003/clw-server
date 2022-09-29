@@ -1,11 +1,3 @@
-// const tableToCsv = require('node-table-to-csv');
-// import * as tableToCsv from 'node-table-to-csv';
-// const fs = require('fs');
-
-// import {rootUrl} from './config.js';
-let rootUrl = "https://nxp-server.herokuapp.com";
-// const rootUrl = "http://localhost:5000";
-
 let isConnected = false;
 let myPort;
 
@@ -332,7 +324,7 @@ const startListening = () => {
   console.log(`current url : ${window.location.href}, unit : ${unitId}`);
 
   // FETCHING COORDINATES FROM SERVER
-  fetch(`${rootUrl}/get-location/${unitId}`)
+  fetch(`${process.env.ROOT_URL}/get-location/${unitId}`)
     .then(response => response.json())
     .then(data => {
       locationObj = data['location'];
@@ -343,7 +335,7 @@ const startListening = () => {
 
   // FETCHING DATA FROM SERIAL AT REGULAR INTERVALS
   dataInterval = setInterval(() => {
-    fetch(`${rootUrl}/get-data/${unitId}`)
+    fetch(`${process.env.ROOT_URL}/get-data/${unitId}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -1184,7 +1176,7 @@ searchBtn.addEventListener('click', e => {
     let id = unitSearch.value;
     unitSearch.value = "";
     // console.log(`Inside search listener : ${unitSearch.value}`);
-    window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+    window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
 });
 
 unitSearch.addEventListener('keyup', e => {
@@ -1193,7 +1185,7 @@ unitSearch.addEventListener('keyup', e => {
       let id = unitSearch.value;
       unitSearch.value = "";
       // console.log(`Inside search listener : ${unitSearch.value}`);
-      window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+      window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
   }
 });
 

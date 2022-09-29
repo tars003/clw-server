@@ -1,6 +1,3 @@
-let rootUrl = "https://nxp-server.herokuapp.com";
-// const rootUrl = "http://localhost:5000";
-
 var unitSearch = document.getElementById('unit-search');
 var searchBtn = document.getElementById('search-btn');
 
@@ -9,7 +6,7 @@ searchBtn.addEventListener('click', e => {
     let id = unitSearch.value;
     unitSearch.value = "";
     // console.log(`Inside search listener : ${unitSearch.value}`);
-    window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+    window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
 });
 
 unitSearch.addEventListener('keyup', e => {
@@ -18,7 +15,7 @@ unitSearch.addEventListener('keyup', e => {
       let id = unitSearch.value;
       unitSearch.value = "";
       // console.log(`Inside search listener : ${unitSearch.value}`);
-      window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
+      window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
   }
 });
 

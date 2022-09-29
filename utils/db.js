@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const connectDB = () => {
-    let dbUrl = 'mongodb+srv://ajay:ajay@cluster0.9ljycxo.mongodb.net/v1?retryWrites=true&w=majority';
-    console.log(dbUrl);
+    let dbUrl = process.env.DB_URL;
+    console.log('dbUrl : ', dbUrl);
     mongoose
         .connect(dbUrl, {
             useNewUrlParser: true,
