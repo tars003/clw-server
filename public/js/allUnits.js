@@ -2,6 +2,8 @@ var unitSearch = document.getElementById('unit-search');
 var searchBtn = document.getElementById('search-btn');
 var searchTab = document.getElementById('search-tab');
 
+// let rootUrl = process.env.ROOT_URL;
+
 // searchTab.addEventListener('click', (e) => {
 //     e.preventDefault();
 //     console.log('inside search tab');
@@ -13,7 +15,7 @@ searchBtn.addEventListener('click', e => {
     let id = unitSearch.value;
     unitSearch.value = "";
     // console.log(`Inside search listener : ${unitSearch.value}`);
-    window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
+    window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
     // unitSearch.focus();
 });
 
@@ -23,7 +25,7 @@ unitSearch.addEventListener('keyup', e => {
         let id = unitSearch.value;
         unitSearch.value = "";
         // console.log(`Inside search listener : ${unitSearch.value}`);
-        window.location.replace(`${process.env.ROOT_URL}/dashboard/?id=${id}`);
+        window.location.replace(`${rootUrl}/dashboard/?id=${id}`);
     }
 });
 
@@ -33,7 +35,7 @@ window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
     
     // FETCHING ALL UNITS FROM SERVER
-    fetch(`${process.env.ROOT_URL}/get-units`)
+    fetch(`${rootUrl}/get-units`)
         .then(response => response.json())
         .then(data => {
             // locationObj = data['location'];
